@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Main {
 
-    private final static String fileName = "statsticinfo.txt";
+    private final static String fileName = "statisticinfo.txt";
     private final static String fileSign = "\nAuthor: Nikita Govokhin, 6412";
 
     public static void main(String[] args) {
