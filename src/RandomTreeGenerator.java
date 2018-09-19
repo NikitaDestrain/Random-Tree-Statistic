@@ -4,6 +4,7 @@ import java.util.Random;
 
 /**
  * Random tree generator can create trees with random count of child for all nodes and collect statistic.
+ * <br>
  * It is singleton class.
  *
  * @author Nikita Govokhin

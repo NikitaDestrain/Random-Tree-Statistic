@@ -4,7 +4,7 @@ import java.util.List;
 /**
  * Class for tree node with data. Also contains information about parent and children.
  *
- * @param <T> is data type
+ * @param <T> data type
  * @author Nikita Govokhin
  */
 

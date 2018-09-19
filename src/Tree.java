@@ -3,10 +3,12 @@ import java.util.List;
 
 /**
  * Class for tree.
+ * <br>
  * Contains information about levels and etc.
+ * <br>
  * Levlels contains lists with Nodes
  *
- * @param <T>
+ * @param <T> type of value for Node
  * @author Nikita Govokhin
  * @see Node
  */

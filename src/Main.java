@@ -4,7 +4,8 @@ import java.io.PrintWriter;
 import java.util.List;
 
 /**
- * Class which run algorithm for laboratory work.
+ * Class which run algorithm for tree creation.
+ * <br>
  * Process statistic and write it to file.
  *
  * @author Nikita Govokhin
