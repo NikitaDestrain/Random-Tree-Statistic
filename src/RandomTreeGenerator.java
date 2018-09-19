@@ -2,6 +2,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Random tree generator can create trees with random count of child for all nodes and collect statistic.
+ * It is singleton class.
+ *
+ * @author Nikita Govokhin
+ */
 public class RandomTreeGenerator {
     private List<Tree<NodeInfo>> trees;
     private Integer counterR;
@@ -17,6 +23,16 @@ public class RandomTreeGenerator {
         return instance;
     }
 
+    /**
+     * @param m          is max value for random value
+     * @param N          is count of nodes which can be contained in Tree
+     * @param R          is count of trees which should be created
+     * @param isRegular  is type of Tree
+     * @param showLogs   is boolean value for switch on/off logs
+     * @param showRandom is boolean value for switch on/off random value logs
+     * @return List of trees
+     * @see Tree
+     */
     public List<Tree<NodeInfo>> createTrees(Integer m, Integer N, Integer R, Boolean isRegular, Boolean showLogs, Boolean showRandom) {
         trees = new ArrayList<>();
         statistic = new Statistic(m, N, R);

@@ -1,3 +1,10 @@
+/**
+ * Class for information which can be contained in Node.
+ *
+ * @author Nikita Govokhin
+ * @see Node
+ */
+
 public class NodeInfo {
     private Integer name;
     private Integer parentName;

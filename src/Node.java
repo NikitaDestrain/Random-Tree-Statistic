@@ -1,6 +1,13 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class for tree node with data. Also contains information about parent and children.
+ *
+ * @param <T> is data type
+ * @author Nikita Govokhin
+ */
+
 public class Node<T> {
     private List<Node<T>> children = new ArrayList<>();
     private T data;

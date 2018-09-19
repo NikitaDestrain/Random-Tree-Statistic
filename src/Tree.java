@@ -1,6 +1,15 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class for tree.
+ * Contains information about levels and etc.
+ * Levlels contains lists with Nodes
+ *
+ * @param <T>
+ * @author Nikita Govokhin
+ * @see Node
+ */
 public class Tree<T> {
     private Integer height = 0;
     private Integer nodeCnt = 0;

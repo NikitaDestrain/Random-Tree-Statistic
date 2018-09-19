@@ -3,6 +3,11 @@ import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class for statistic.
+ *
+ * @author Nikita Govokhin
+ */
 public class Statistic {
     private Map<Integer, Integer> gistoInfo;
     private Integer m;
@@ -68,18 +73,12 @@ public class Statistic {
         df.setRoundingMode(RoundingMode.CEILING);
         sb.append("Statistic information\n");
         sb.append("------------------------------------------\n");
-        /*
-        Parameters:
-        m = 4
-        N = 200
-        R = 400
-                ------------------------------------------
-                */
-        sb.append("Parameters:\n");
-        sb.append("m = ");
-        sb.append("Parameters:\n");
-        sb.append("Parameters:\n");
-
+        sb.append("Parameters:");
+        sb.append("\nm = " + m);
+        sb.append("\nN = " + N);
+        sb.append("\nR = " + R);
+        sb.append("\n----------------\n");
+        sb.append("\nStatistic of values:\n");
         for (Integer key : gistoInfo.keySet()) {
             sb.append(key + ": " + gistoInfo.get(key) + "\n");
         }

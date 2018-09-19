@@ -3,9 +3,15 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+/**
+ * Class which run algorithm for laboratory work.
+ * Process statistic and write it to file.
+ *
+ * @author Nikita Govokhin
+ */
 public class Main {
 
-    private final static String fileName = "statisticinfo.txt";
+    private final static String fileName = "output/result/statisticinfo.txt";
     private final static String fileSign = "\nAuthor: Nikita Govokhin, 6412";
 
     public static void main(String[] args) {
@@ -46,13 +52,10 @@ public class Main {
 
 
         try (PrintWriter pw = new PrintWriter(new File(fileName));) {
-            pw.write("Parameters:");
-            pw.write("\nm = " + m);
-            pw.write("\nN = " + N);
-            pw.write("\nR = " + R);
-            pw.write("\n------------------------------------------\n");
+            pw.write("Result:\n");
             pw.write("\nRandom\n" + statistic.toString());
             pw.write("\n\nRegular\n" + regularStatistic.toString());
+            pw.write("\n\n");
             pw.write(fileSign);
         } catch (IOException e) {
             e.printStackTrace();
