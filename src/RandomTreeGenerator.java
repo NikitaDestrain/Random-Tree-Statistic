@@ -13,10 +13,12 @@ public class RandomTreeGenerator {
     private List<Tree<NodeInfo>> trees;
     private Integer counterR;
     private Statistic statistic;
+    private AlgoUtils algoUtils;
 
     private static RandomTreeGenerator instance;
 
     private RandomTreeGenerator() {
+        algoUtils = AlgoUtils.getInstance();
     }
 
     public static RandomTreeGenerator getInstance() {
@@ -79,11 +81,13 @@ public class RandomTreeGenerator {
                     }
                     statistic.addCount(value);
                     for (int j = 0; j < value; j++) {
-                        Node<NodeInfo> node = new Node<>(new NodeInfo(++name, parent.getData().getName()), parent);
-                        parent.addChild(node);
-                        level.add(node);
-                        if (showLogs) {
-                            System.out.printf("[INFO]: Created node {%d, %d}\n", name, parent.getData().getName());
+                        if (name < N) {
+                            Node<NodeInfo> node = new Node<>(new NodeInfo(++name, parent.getData().getName()), parent);
+                            parent.addChild(node);
+                            level.add(node);
+                            if (showLogs) {
+                                System.out.printf("[INFO]: Created node {%d, %d}\n", name, parent.getData().getName());
+                            }
                         }
                     }
                     if (name + 1 > N) {
@@ -103,6 +107,18 @@ public class RandomTreeGenerator {
                 System.out.printf("[INFO]: Tree contains %d nodes\n", name + 1);
             }
             if (!badTree) {
+                Double alpha;
+                if (!isRegular) {
+                    alpha = algoUtils.getAlpha(tree.getNodeCnt(), tree.getLeafCnt());
+                } else {
+
+                    alpha = new Double(m - 1) / new Double(m - 2);
+                }
+                statistic.addAlpha(counterR, alpha);
+                statistic.addHeight(counterR, tree.getHeight());
+                statistic.addLeafCnt(counterR, tree.getLeafCnt());
+                statistic.addNodeCnt(counterR, tree.getNodeCnt());
+                tree.setAlpha(alpha);
                 ++counterR;
                 if (showLogs) {
                     System.out.printf("[INFO]: Add tree to map\n");

@@ -15,6 +15,7 @@ import java.util.List;
 public class Tree<T> {
     private Integer height = 0;
     private Integer nodeCnt = 0;
+    private Double alpha = 0.0;
     private List<List<Node<T>>> levels;
 
     public Tree() {
@@ -23,6 +24,22 @@ public class Tree<T> {
 
     public Tree(List<List<Node<T>>> levels) {
         this.levels = levels;
+    }
+
+    public Double getAlpha() {
+        return alpha;
+    }
+
+    public void setAlpha(Double alpha) {
+        this.alpha = alpha;
+    }
+
+    public Integer getNodeCnt() {
+        return nodeCnt;
+    }
+
+    public Integer getHeight() {
+        return height;
     }
 
     public void addLevel(List<Node<T>> level) {
@@ -50,10 +67,11 @@ public class Tree<T> {
     @Override
     public String toString() {
         StringBuffer sb = new StringBuffer();
-        System.out.println("-----------------------------------------------");
-        System.out.println("Height: " + height);
-        System.out.println("Node count: " + nodeCnt);
-        System.out.println("Leaf count: " + getLeafCnt());
+        sb.append("-----------------------------------------------\n");
+        sb.append("Height: " + height + "\n");
+        sb.append("Node count: " + nodeCnt + "\n");
+        sb.append("Leaf count: " + getLeafCnt() + "\n");
+        sb.append("Alpha: " + alpha + "\n");
         for (int i = 0; i < levels.size(); i++) {
             sb.append(i + ": ");
             for (Node<T> node : levels.get(i)) {
@@ -61,7 +79,7 @@ public class Tree<T> {
             }
             sb.append("\n");
         }
-        System.out.println("-----------------------------------------------");
+        sb.append("-----------------------------------------------");
         return sb.toString();
     }
 }

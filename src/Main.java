@@ -16,18 +16,19 @@ public class Main {
     private final static String TREE_FILE_NAME = "output/result/treeinfo.txt";
     private final static String fileSign = "\nAuthor: Nikita Govokhin, 6412";
 
+    //todo add variance to statistic
     public static void main(String[] args) {
-        Integer m = 4;
+        Integer m = 5;
         Integer N = 200;
         Integer R = 400;
-        Boolean showLogs = true;
+        Boolean showLogs = false;
         Boolean showRandom = false;
-        Boolean showTrees = false;
+        Boolean showTrees = true;
 
         RandomTreeGenerator randomTreeGenerator = RandomTreeGenerator.getInstance();
-        List<Tree<NodeInfo>> trees = randomTreeGenerator.createTrees(m, N, R, false, showLogs, showRandom);
+        List<Tree<NodeInfo>> trees = randomTreeGenerator.createTrees(m - 1, N - 1, R, false, showLogs, showRandom);
         Statistic statistic = randomTreeGenerator.getStatistic();
-        Tree<NodeInfo> regularTree = randomTreeGenerator.createTrees(m, N, 1, true, showLogs, showRandom).get(0);
+        Tree<NodeInfo> regularTree = randomTreeGenerator.createTrees(m - 1, N - 1, 1, true, showLogs, showRandom).get(0);
         Statistic regularStatistic = randomTreeGenerator.getStatistic();
 
         if (showTrees) {
@@ -43,11 +44,11 @@ public class Main {
         }
 
         System.out.println();
-        if (statistic != null) {
+        if (statistic != null && regularStatistic != null) {
             System.out.println("All");
-            statistic.printStatistic();
+            System.out.println(statistic);
             System.out.println("Regular");
-            regularStatistic.printStatistic();
+            System.out.println(regularStatistic);
         } else {
             System.out.println("[ERROR]: Statistic was not created! See logs.");
         }

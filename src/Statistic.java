@@ -10,19 +10,32 @@ import java.util.Map;
  */
 public class Statistic {
     private Map<Integer, Integer> gistoInfo;
+    private Map<Integer, Double> alphaInfo;
+    private Map<Integer, Integer> heightInfo;
+    private Map<Integer, Integer> nodeCntInfo;
+    private Map<Integer, Integer> leafCntInfo;
     private Integer m;
     private Integer N;
     private Integer R;
 
     public Statistic(Integer m, Integer N, Integer R) {
         this.gistoInfo = new HashMap<>();
+        this.alphaInfo = new HashMap<>();
+        this.heightInfo = new HashMap<>();
+        this.nodeCntInfo = new HashMap<>();
+        this.leafCntInfo = new HashMap<>();
         this.m = m;
         this.N = N;
         this.R = R;
     }
 
-    public Statistic(Map<Integer, Integer> gistoInfo, Integer m, Integer N, Integer R) {
+    public Statistic(Map<Integer, Integer> gistoInfo, Map<Integer, Double> alphaInfo, Map<Integer, Integer> heightInfo,
+                     Map<Integer, Integer> nodeCntInfo, Map<Integer, Integer> leafCntInfo, Integer m, Integer N, Integer R) {
         this.gistoInfo = gistoInfo;
+        this.alphaInfo = alphaInfo;
+        this.heightInfo = heightInfo;
+        this.nodeCntInfo = nodeCntInfo;
+        this.leafCntInfo = leafCntInfo;
         this.m = m;
         this.N = N;
         this.R = R;
@@ -62,8 +75,98 @@ public class Statistic {
         for (Integer key : gistoInfo.keySet()) {
             System.out.println(key + ": " + gistoInfo.get(key));
         }
-        System.out.println("Average: " + df.format(getAverage()));
+        System.out.println("Average random value: " + df.format(getAverage()));
+        System.out.println("Average alpha value: " + df.format(getAverageAlpha()));
         System.out.println("------------------------------------------");
+    }
+
+    public void addAlpha(Integer key, Double alpha) {
+        if (alphaInfo.get(key) == null) {
+            alphaInfo.put(key, alpha);
+        } else {
+            alphaInfo.replace(key, alphaInfo.get(key), alpha);
+        }
+    }
+
+    public Double getAlpha(Integer key) {
+        return alphaInfo.get(key);
+    }
+
+    public void addHeight(Integer key, Integer height) {
+        if (heightInfo.get(key) == null) {
+            heightInfo.put(key, height);
+        } else {
+            heightInfo.replace(key, heightInfo.get(key), height);
+        }
+    }
+
+    public Integer getHeight(Integer key) {
+        return heightInfo.get(key);
+    }
+
+    public void addNodeCnt(Integer key, Integer nodeCnt) {
+        if (nodeCntInfo.get(key) == null) {
+            nodeCntInfo.put(key, nodeCnt);
+        } else {
+            nodeCntInfo.replace(key, nodeCntInfo.get(key), nodeCnt);
+        }
+    }
+
+    public Integer getNodeCnt(Integer key) {
+        return nodeCntInfo.get(key);
+    }
+
+
+    public void addLeafCnt(Integer key, Integer leafCnt) {
+        if (leafCntInfo.get(key) == null) {
+            leafCntInfo.put(key, leafCnt);
+        } else {
+            leafCntInfo.replace(key, leafCntInfo.get(key), leafCnt);
+        }
+    }
+
+    public Integer getLeafCnt(Integer key) {
+        return leafCntInfo.get(key);
+    }
+
+    public Double getAverageAlpha() {
+        Double res = 0.0;
+        Integer cnt = 0;
+        for (Double a : alphaInfo.values()) {
+            res += a;
+            ++cnt;
+        }
+        return res / cnt;
+    }
+
+    public Double getAverageLeafCnt() {
+        Double res = 0.0;
+        Integer cnt = 0;
+        for (Integer a : leafCntInfo.values()) {
+            res += a;
+            ++cnt;
+        }
+        return res / cnt;
+    }
+
+    public Double getAverageNodeCnt() {
+        Double res = 0.0;
+        Integer cnt = 0;
+        for (Integer a : nodeCntInfo.values()) {
+            res += a;
+            ++cnt;
+        }
+        return res / cnt;
+    }
+
+    public Double getAverageHeight() {
+        Double res = 0.0;
+        Integer cnt = 0;
+        for (Integer a : heightInfo.values()) {
+            res += a;
+            ++cnt;
+        }
+        return res / cnt;
     }
 
     @Override
@@ -82,7 +185,11 @@ public class Statistic {
         for (Integer key : gistoInfo.keySet()) {
             sb.append(key + ": " + gistoInfo.get(key) + "\n");
         }
-        sb.append("Average: " + df.format(getAverage()) + "\n");
+        sb.append("Average random value: " + df.format(getAverage()) + "\n");
+        sb.append("Average alpha value: " + df.format(getAverageAlpha()) + "\n");
+        sb.append("Average height value: " + df.format(getAverageHeight()) + "\n");
+        sb.append("Average nodeCnt value: " + df.format(getAverageNodeCnt()) + "\n");
+        sb.append("Average leafCnt value: " + df.format(getAverageLeafCnt()) + "\n");
         sb.append("------------------------------------------");
         return sb.toString();
     }
