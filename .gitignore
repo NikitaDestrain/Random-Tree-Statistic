@@ -26,5 +26,5 @@
 hs_err_pid*
 
 # Output
-#output/result/*
-#output/javadocs/*
+output/result/*
+output/javadocs/*
