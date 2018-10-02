@@ -12,7 +12,8 @@ import java.util.List;
  */
 public class Main {
 
-    private final static String fileName = "output/result/statisticinfo.txt";
+    private final static String STATISTIC_FILE_NAME = "output/result/statisticinfo.txt";
+    private final static String TREE_FILE_NAME = "output/result/treeinfo.txt";
     private final static String fileSign = "\nAuthor: Nikita Govokhin, 6412";
 
     public static void main(String[] args) {
@@ -52,10 +53,18 @@ public class Main {
         }
 
 
-        try (PrintWriter pw = new PrintWriter(new File(fileName));) {
+        try (PrintWriter pw = new PrintWriter(new File(STATISTIC_FILE_NAME));) {
             pw.write("Result:\n");
             pw.write("\nRandom\n" + statistic.toString());
             pw.write("\n\nRegular\n" + regularStatistic.toString());
+            pw.write("\n\n");
+            pw.write(fileSign);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try (PrintWriter pw = new PrintWriter(new File(TREE_FILE_NAME));) {
+            pw.write("Tree:\n");
+            pw.write(trees.get(2).toString());
             pw.write("\n\n");
             pw.write(fileSign);
         } catch (IOException e) {
