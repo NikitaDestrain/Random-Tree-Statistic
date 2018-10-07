@@ -88,5 +88,11 @@ public class Main {
         if ((avg > 2.75) || (avg < 2.25)) {
             System.out.println("[INFO]: Average is outside allowable limits");
         }
+        Double alpha = algoUtils.getStatistic(number).getAlpha(number);
+        Double range = 0.11;
+        Double theoreticalAlpha = alpha - range;
+        if ((alpha < theoreticalAlpha)) {
+            System.out.println("[INFO]: Program contains error!");
+        }
     }
 }
