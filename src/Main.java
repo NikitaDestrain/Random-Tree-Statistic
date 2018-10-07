@@ -16,7 +16,6 @@ public class Main {
     private final static String TREE_FILE_NAME = "output/result/treeinfo.txt";
     private final static String fileSign = "\nAuthor: Nikita Govokhin, 6412";
 
-    //todo add variance to statistic
     public static void main(String[] args) {
         Integer m = 5;
         Integer N = 200;
