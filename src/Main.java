@@ -66,7 +66,7 @@ public class Main {
             pw.write("Tree:\n");
             Tree<NodeInfo> highestTree = trees.get(0);
             for(Tree<NodeInfo> tree: trees){
-                if(highestTree.getHeight() < tree.getHeight()) {
+                if(highestTree.getHeight() <= tree.getHeight() && highestTree.getNodeCnt() <= tree.getNodeCnt()) {
                     highestTree = tree;
                 }
             }
