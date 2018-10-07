@@ -28,7 +28,7 @@ public class Main {
         RandomTreeGenerator randomTreeGenerator = RandomTreeGenerator.getInstance();
         List<Tree<NodeInfo>> trees = randomTreeGenerator.createTrees(m, N, R + 1, false, showLogs, showRandom);
         Statistic statistic = randomTreeGenerator.getStatistic();
-        Tree<NodeInfo> regularTree = randomTreeGenerator.createTrees(m, N, 1, true, showLogs, showRandom).get(0);
+        Tree<NodeInfo> regularTree = randomTreeGenerator.createTrees(m - 1, N, 1, true, showLogs, showRandom).get(0);
         Statistic regularStatistic = randomTreeGenerator.getStatistic();
         AlgoUtils algoUtils = AlgoUtils.getInstance();
 
@@ -117,9 +117,8 @@ public class Main {
             System.out.println("[INFO]: Average is outside allowable limit!");
         }
         Double alpha = algoUtils.getStatistic(number).getAlpha(number);
-        Double range = 0.11;
-        Double theoreticalAlpha = alpha - range;
-        if ((alpha < theoreticalAlpha)) {
+        Double regualarAlpha = algoUtils.getStatistic(-1).getAlpha(0);
+        if ((alpha < regualarAlpha)) {
             System.out.println("[INFO]: Program contains error!");
         }
     }
