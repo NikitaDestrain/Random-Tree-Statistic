@@ -22,13 +22,14 @@ public class Main {
         Integer R = 400;
         Boolean showLogs = false;
         Boolean showRandom = false;
-        Boolean showTrees = true;
+        Boolean showTrees = false;
 
         RandomTreeGenerator randomTreeGenerator = RandomTreeGenerator.getInstance();
         List<Tree<NodeInfo>> trees = randomTreeGenerator.createTrees(m, N, R, false, showLogs, showRandom);
         Statistic statistic = randomTreeGenerator.getStatistic();
         Tree<NodeInfo> regularTree = randomTreeGenerator.createTrees(m, N, 1, true, showLogs, showRandom).get(0);
         Statistic regularStatistic = randomTreeGenerator.getStatistic();
+        AlgoUtils algoUtils = AlgoUtils.getInstance();
 
         if (showTrees) {
             System.out.println("Tree information");
@@ -65,13 +66,19 @@ public class Main {
         try (PrintWriter pw = new PrintWriter(new File(TREE_FILE_NAME));) {
             pw.write("Tree:\n");
             Tree<NodeInfo> highestTree = trees.get(0);
-            for (Tree<NodeInfo> tree : trees) {
-                if (highestTree.getNodeCnt() < tree.getNodeCnt()) {
-                    highestTree = tree;
+            Integer number = 0;
+            for (int i = 1; i < trees.size(); i++) {
+                if (highestTree.getNodeCnt() < trees.get(i).getNodeCnt()) {
+                    highestTree = trees.get(i);
+                    number = i;
                 }
             }
             pw.write(highestTree.toString());
+            pw.write("\n" + algoUtils.getStatistic(number));
+            pw.write("\n");
             pw.write("\nRegular:\n" + regularTree);
+            pw.write("\n" + algoUtils.getStatistic(-1));
+            pw.write("\n");
             pw.write("\n\n");
             pw.write(fileSign);
         } catch (IOException e) {

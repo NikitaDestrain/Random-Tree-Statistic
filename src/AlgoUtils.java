@@ -1,15 +1,19 @@
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AlgoUtils {
 
     private static AlgoUtils instance;
     private DecimalFormat decimalFormat;
     public static String CEILING = "CEILING";
+    public Map<Integer, Statistic> statisticMap;
 
     private AlgoUtils() {
         decimalFormat = new DecimalFormat("#.##");
         decimalFormat.setRoundingMode(RoundingMode.CEILING);
+        statisticMap = new HashMap<>();
     }
 
     public static AlgoUtils getInstance() {
@@ -38,5 +42,13 @@ public class AlgoUtils {
                 System.out.println("ERROR: Unknown mode");
                 break;
         }
+    }
+
+    public void addStatistic(Integer key, Statistic statistic) {
+        statisticMap.putIfAbsent(key, statistic);
+    }
+
+    public Statistic getStatistic(Integer key) {
+        return statisticMap.get(key);
     }
 }

@@ -139,13 +139,13 @@ public class Statistic {
         return res / cnt;
     }
 
-    public Double getVarianceAlpha(){
+    public Double getVarianceAlpha() {
         Double res = 0.0;
         Integer cnt = 0;
         Double avg = getAverageAlpha();
-        Double sqAvg = avg*avg;
-        for (Double a: alphaInfo.values()) {
-            res+=(a*a - sqAvg);
+        Double sqAvg = avg * avg;
+        for (Double a : alphaInfo.values()) {
+            res += (a * a - sqAvg);
             ++cnt;
         }
         return res / cnt;
@@ -197,12 +197,20 @@ public class Statistic {
         for (Integer key : gistoInfo.keySet()) {
             sb.append(key + ": " + gistoInfo.get(key) + "\n");
         }
-        sb.append("Average random value: " + df.format(getAverage()) + "\n");
-        sb.append("Average alpha value: " + df.format(getAverageAlpha()) + "\n");
-        sb.append("Variance alpha value: " + df.format(getVarianceAlpha()) + "\n");
-        sb.append("Average height value: " + df.format(getAverageHeight()) + "\n");
-        sb.append("Average nodeCnt value: " + df.format(getAverageNodeCnt()) + "\n");
-        sb.append("Average leafCnt value: " + df.format(getAverageLeafCnt()) + "\n");
+        if (R != 1) {
+            sb.append("Average random value: " + df.format(getAverage()) + "\n");
+            sb.append("Average alpha value: " + df.format(getAverageAlpha()) + "\n");
+            sb.append("Variance alpha value: " + df.format(getVarianceAlpha()) + "\n");
+            sb.append("Average height value: " + df.format(getAverageHeight()) + "\n");
+            sb.append("Average nodeCnt value: " + df.format(getAverageNodeCnt()) + "\n");
+            sb.append("Average leafCnt value: " + df.format(getAverageLeafCnt()) + "\n");
+        } else {
+            sb.append("Average random value: " + df.format(getAverage()) + "\n");
+            sb.append("Alpha value: " + getAverageAlpha() + "\n");
+            sb.append("Height value: " + getAverageHeight() + "\n");
+            sb.append("NodeCnt value: " + getAverageNodeCnt() + "\n");
+            sb.append("LeafCnt value: " + getAverageLeafCnt() + "\n");
+        }
         sb.append("------------------------------------------");
         return sb.toString();
     }
