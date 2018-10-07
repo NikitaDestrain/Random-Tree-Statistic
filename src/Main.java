@@ -65,8 +65,8 @@ public class Main {
         try (PrintWriter pw = new PrintWriter(new File(TREE_FILE_NAME));) {
             pw.write("Tree:\n");
             Tree<NodeInfo> highestTree = trees.get(0);
-            for(Tree<NodeInfo> tree: trees){
-                if(highestTree.getHeight() <= tree.getHeight() && highestTree.getNodeCnt() <= tree.getNodeCnt()) {
+            for (Tree<NodeInfo> tree : trees) {
+                if (highestTree.getNodeCnt() < tree.getNodeCnt()) {
                     highestTree = tree;
                 }
             }
