@@ -28,7 +28,7 @@ public class Main {
         RandomTreeGenerator randomTreeGenerator = RandomTreeGenerator.getInstance();
         List<Tree<NodeInfo>> trees = randomTreeGenerator.createTrees(m, N, R + 1, false, showLogs, showRandom);
         Statistic statistic = randomTreeGenerator.getStatistic();
-        Tree<NodeInfo> regularTree = randomTreeGenerator.createTrees(m - 1, N, 1, true, showLogs, showRandom).get(0);
+        Tree<NodeInfo> regularTree = randomTreeGenerator.createTrees(m - 1, N - 1, 1, true, showLogs, showRandom).get(0);
         Statistic regularStatistic = randomTreeGenerator.getStatistic();
         AlgoUtils algoUtils = AlgoUtils.getInstance();
 
