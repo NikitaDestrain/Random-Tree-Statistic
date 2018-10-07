@@ -13,6 +13,7 @@ import java.util.List;
 public class Main {
 
     private final static String STATISTIC_FILE_NAME = "output/result/statisticinfo.txt";
+    private final static String STATISTIC_FILE_NAME_2 = "output/result/statisticinfo2.txt";
     private final static String TREE_FILE_NAME = "output/result/treeinfo.txt";
     private final static String fileSign = "\nAuthor: Nikita Govokhin, 6412";
 
@@ -25,7 +26,7 @@ public class Main {
         Boolean showTrees = false;
 
         RandomTreeGenerator randomTreeGenerator = RandomTreeGenerator.getInstance();
-        List<Tree<NodeInfo>> trees = randomTreeGenerator.createTrees(m, N, R, false, showLogs, showRandom);
+        List<Tree<NodeInfo>> trees = randomTreeGenerator.createTrees(m, N, R + 1, false, showLogs, showRandom);
         Statistic statistic = randomTreeGenerator.getStatistic();
         Tree<NodeInfo> regularTree = randomTreeGenerator.createTrees(m, N, 1, true, showLogs, showRandom).get(0);
         Statistic regularStatistic = randomTreeGenerator.getStatistic();
@@ -80,6 +81,33 @@ public class Main {
             pw.write("\n" + algoUtils.getStatistic(-1));
             pw.write("\n");
             pw.write("\n\n");
+            pw.write(fileSign);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try (PrintWriter pw = new PrintWriter(new File(STATISTIC_FILE_NAME_2));) {
+            pw.write("400 trees statistic:\n");
+            pw.write("NodeCnt:\n");
+            for (int i = 1; i < trees.size(); i++) {
+                pw.write(statistic.getNodeCnt(i) + "\n");
+            }
+            pw.write("LeafCnt:\n");
+            for (int i = 1; i < trees.size(); i++) {
+                pw.write(statistic.getLeafCnt(i) + "\n");
+            }
+            pw.write("Height:\n");
+            for (int i = 1; i < trees.size(); i++) {
+                pw.write(statistic.getHeight(i) + "\n");
+            }
+            pw.write("Alpha:\n");
+            for (int i = 1; i < trees.size(); i++) {
+                pw.write(statistic.getAlpha(i) + "\n");
+            }
+            pw.write("\nAvg node cnt: " + statistic.getAverageNodeCnt());
+            pw.write("\nAvg leaf cnt: " + statistic.getAverageLeafCnt());
+            pw.write("\nAvg height: " + statistic.getAverageHeight());
+            pw.write("\nVariance alpha: " + statistic.getVarianceAlpha());
+            pw.write("\nAvg alpha: " + statistic.getAverageAlpha() + "\n");
             pw.write(fileSign);
         } catch (IOException e) {
             e.printStackTrace();
