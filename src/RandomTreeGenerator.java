@@ -111,12 +111,7 @@ public class RandomTreeGenerator {
                 System.out.printf("[INFO]: Tree contains %d nodes\n", name + 1);
             }
             if (!badTree) {
-                Double alpha;
-                if (!isRegular) {
-                    alpha = algoUtils.getAlpha(tree.getNodeCnt(), tree.getLeafCnt());
-                } else {
-                    alpha = new Double(m - 1) / new Double(m - 2);
-                }
+                Double alpha =algoUtils.getAlpha(tree.getNodeCnt(), tree.getLeafCnt());
                 statistic.addAlpha(counterR, alpha);
                 statistic.addHeight(counterR, tree.getHeight());
                 statistic.addLeafCnt(counterR, tree.getLeafCnt());

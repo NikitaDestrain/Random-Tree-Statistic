@@ -63,10 +63,10 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        Tree<NodeInfo> highestTree = trees.get(0);
+        Integer number = 0;
         try (PrintWriter pw = new PrintWriter(new File(TREE_FILE_NAME));) {
             pw.write("Tree:\n");
-            Tree<NodeInfo> highestTree = trees.get(0);
-            Integer number = 0;
             for (int i = 1; i < trees.size(); i++) {
                 if (highestTree.getNodeCnt() < trees.get(i).getNodeCnt()) {
                     highestTree = trees.get(i);
@@ -83,6 +83,10 @@ public class Main {
             pw.write(fileSign);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        Double avg = algoUtils.getStatistic(number).getAverage();
+        if ((avg > 2.75) || (avg < 2.25)) {
+            System.out.println("[INFO]: Average is outside allowable limits");
         }
     }
 }
