@@ -86,7 +86,7 @@ public class Main {
         }
         Double avg = algoUtils.getStatistic(number).getAverage();
         if ((avg > 2.75) || (avg < 2.25)) {
-            System.out.println("[INFO]: Average is outside allowable limits");
+            System.out.println("[INFO]: Average is outside allowable limit!");
         }
         Double alpha = algoUtils.getStatistic(number).getAlpha(number);
         Double range = 0.11;
