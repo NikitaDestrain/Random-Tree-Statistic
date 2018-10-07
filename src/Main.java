@@ -71,6 +71,7 @@ public class Main {
                 }
             }
             pw.write(highestTree.toString());
+            pw.write("\nRegular:\n" + regularTree);
             pw.write("\n\n");
             pw.write(fileSign);
         } catch (IOException e) {
