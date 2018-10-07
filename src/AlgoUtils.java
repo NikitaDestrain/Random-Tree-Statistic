@@ -25,6 +25,10 @@ public class AlgoUtils {
         return new Double(nodeCnt) / new Double(leafCnt);
     }
 
+    public Double getRegularAlpha(Integer m) {
+        return new Double(m - 1) / new Double(m - 2);
+    }
+
     public void setRoundingMode(String mode) {
         switch (mode) {
             case "CEILING":

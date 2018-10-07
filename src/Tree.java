@@ -72,6 +72,7 @@ public class Tree<T> {
         sb.append("Node count: " + nodeCnt + "\n");
         sb.append("Leaf count: " + getLeafCnt() + "\n");
         sb.append("Alpha: " + alpha + "\n");
+        sb.append("Levels:\n");
         for (int i = 0; i < levels.size(); i++) {
             sb.append(i + ": ");
             for (Node<T> node : levels.get(i)) {
@@ -79,7 +80,21 @@ public class Tree<T> {
             }
             sb.append("\n");
         }
-        sb.append("-----------------------------------------------");
+        sb.append("\nLeaves:\n");
+        Boolean newLine = false;
+        for (int i = 0; i < levels.size(); i++) {
+            for (Node<T> node : levels.get(i)) {
+                if (node.isLeaf()) {
+                    sb.append(node.toString() + " ");
+                    newLine = true;
+                }
+            }
+            if (newLine) {
+                sb.append("\n");
+                newLine = false;
+            }
+        }
+        sb.append("-----------------------------------------------\n");
         return sb.toString();
     }
 }

@@ -139,6 +139,18 @@ public class Statistic {
         return res / cnt;
     }
 
+    public Double getVarianceAlpha(){
+        Double res = 0.0;
+        Integer cnt = 0;
+        Double avg = getAverageAlpha();
+        Double sqAvg = avg*avg;
+        for (Double a: alphaInfo.values()) {
+            res+=(a*a - sqAvg);
+            ++cnt;
+        }
+        return res / cnt;
+    }
+
     public Double getAverageLeafCnt() {
         Double res = 0.0;
         Integer cnt = 0;
@@ -172,7 +184,7 @@ public class Statistic {
     @Override
     public String toString() {
         StringBuffer sb = new StringBuffer();
-        DecimalFormat df = new DecimalFormat("#.##");
+        DecimalFormat df = new DecimalFormat("#.####");
         df.setRoundingMode(RoundingMode.CEILING);
         sb.append("Statistic information\n");
         sb.append("------------------------------------------\n");
@@ -187,6 +199,7 @@ public class Statistic {
         }
         sb.append("Average random value: " + df.format(getAverage()) + "\n");
         sb.append("Average alpha value: " + df.format(getAverageAlpha()) + "\n");
+        sb.append("Variance alpha value: " + df.format(getVarianceAlpha()) + "\n");
         sb.append("Average height value: " + df.format(getAverageHeight()) + "\n");
         sb.append("Average nodeCnt value: " + df.format(getAverageNodeCnt()) + "\n");
         sb.append("Average leafCnt value: " + df.format(getAverageLeafCnt()) + "\n");

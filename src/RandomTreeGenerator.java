@@ -70,6 +70,7 @@ public class RandomTreeGenerator {
                     }
                     Node<NodeInfo> parent = prevLevel.get(k);
                     if (value == 0) {
+                        statistic.addCount(value);
                         if (showLogs) {
                             System.out.println("[INFO]: Exit for zero");
                         }

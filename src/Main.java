@@ -26,9 +26,9 @@ public class Main {
         Boolean showTrees = true;
 
         RandomTreeGenerator randomTreeGenerator = RandomTreeGenerator.getInstance();
-        List<Tree<NodeInfo>> trees = randomTreeGenerator.createTrees(m - 1, N - 1, R, false, showLogs, showRandom);
+        List<Tree<NodeInfo>> trees = randomTreeGenerator.createTrees(m, N, R, false, showLogs, showRandom);
         Statistic statistic = randomTreeGenerator.getStatistic();
-        Tree<NodeInfo> regularTree = randomTreeGenerator.createTrees(m - 1, N - 1, 1, true, showLogs, showRandom).get(0);
+        Tree<NodeInfo> regularTree = randomTreeGenerator.createTrees(m, N, 1, true, showLogs, showRandom).get(0);
         Statistic regularStatistic = randomTreeGenerator.getStatistic();
 
         if (showTrees) {
@@ -65,7 +65,13 @@ public class Main {
         }
         try (PrintWriter pw = new PrintWriter(new File(TREE_FILE_NAME));) {
             pw.write("Tree:\n");
-            pw.write(trees.get(2).toString());
+            Tree<NodeInfo> highestTree = trees.get(0);
+            for(Tree<NodeInfo> tree: trees){
+                if(highestTree.getHeight() < tree.getHeight()) {
+                    highestTree = tree;
+                }
+            }
+            pw.write(highestTree.toString());
             pw.write("\n\n");
             pw.write(fileSign);
         } catch (IOException e) {
