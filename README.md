@@ -1,3 +1,3 @@
-# Random-Tree-Statistic
+# Random Tree Statistic
 
 Author: Nikita Govokhin
